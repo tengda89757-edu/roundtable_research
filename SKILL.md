@@ -243,9 +243,27 @@ description: "科研方案圆桌审查与决策：把模糊想法、多个候选
 - 如果标题里没有写真实角色名，只写抽象槽位，也算失败
 - 如果新分歧点比旧分歧点更不关键，`Moderator` 必须拉回原命题
 
-**可选调解室**:
-- 只有在两个角色争执的是“同一个核心分歧”时才开
-- 调解目标不是“和稀泥”，而是明确共识边界和 remaining disagreement
+**小黑屋协议**:
+- 只有在两位角色围绕同一个 `P0/P1` 命题已经正面交锋至少 1 轮、且分歧仍影响排序、go/no-go 或 claim 强度时，`Moderator` 才能把他们拉进小黑屋
+- 小黑屋只允许 2 位冲突方 + `Moderator`，其他角色暂时旁听或退出，不要继续多人混战
+- 小黑屋目标不是继续拉扯，而是强制收敛成可带回大桌的结论
+
+**进入小黑屋后，每位冲突方必须回答 4 个问题**:
+1. 我同意对方的哪一点
+2. 我不同意的核心假设是什么
+3. 什么证据会让我改口
+4. 如果今天必须推进，我能接受的折中方案是什么
+
+**小黑屋结束产物**:
+- `Shared Ground`: 双方已同意的部分
+- `Irreducible Disagreement`: 仍然无法化解的核心分歧
+- `Decision-Critical Evidence`: 哪条证据最能改变结论
+- `Impact on Main Table`: 这场分歧如何改变最终排序、claim 或 next actions
+
+**退出条件**:
+- 已形成可执行折中方案
+- 已确认分歧暂时不可化解，但知道该补什么证据
+- 或 `Moderator` 判断这场冲突不再值得继续占用主流程
 
 ### Step 4: 决策
 
@@ -322,6 +340,28 @@ description: "科研方案圆桌审查与决策：把模糊想法、多个候选
 **本轮动作 / 裁定**:
 - ...
 
+### 小黑屋（仅在触发时出现）
+#### Moderator
+> 由于 `ResearchArchitect` 和 `RedTeamReviewer` 在同一个 P0/P1 命题上持续对冲，现在进入小黑屋。
+
+#### ResearchArchitect
+> 我同意对方的一点是...
+> 我不同意的核心假设是...
+> 什么证据会让我改口：...
+> 如果今天必须推进，我接受的折中方案是...
+
+#### RedTeamReviewer
+> 我同意对方的一点是...
+> 我不同意的核心假设是...
+> 什么证据会让我改口：...
+> 如果今天必须推进，我接受的折中方案是...
+
+#### Moderator（Bring Back）
+> Shared Ground: ...
+> Irreducible Disagreement: ...
+> Decision-Critical Evidence: ...
+> Impact on Main Table: ...
+
 ## Final Decision
 ## Ranking / Recommendation
 | 方案 | Evidence | Method | Execution | Narrative | Weighted Total | Recommendation |
@@ -351,6 +391,7 @@ description: "科研方案圆桌审查与决策：把模糊想法、多个候选
 - `speaking_limit`: 默认每位角色每轮 `1-3` 句；必要时宁可减少角色，也不要堆对白
 - `decision_priority`: `证据 > 方法 > 工程 > 叙事`
 - `interaction_rule`: 如果存在实质分歧，至少出现一次 `主张 -> 反驳 -> 回应`；如果不存在实质分歧，至少出现一次 `主张 -> 支持/限缩 -> 裁定`
+- `breakout_rule`: 只有双边冲突持续影响主决策时才开小黑屋；开了就必须带回结构化结论
 - `role_name_rule`: 每轮结构里必须写真实角色名，不能只写抽象槽位
 - `good_output`: 让用户知道“该做哪一个、为什么、缺什么证据、何时止损”
 - `bad_output`: 只是热闹，没有明确排序、停损点和下一步
